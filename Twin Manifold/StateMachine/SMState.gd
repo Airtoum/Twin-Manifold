@@ -2,12 +2,14 @@ extends Node
 
 class_name SMState
 
-var agent
+var state_machine # pretend this is typed as StateMachine but Godot is dumb
+# var agent
+# construct this var when inheriting from this, with the specific type you want
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+# Use this to copy agent from parent StateMachine
+func state_init():
+	pass
 	
 # To be overridden, if desired. Happens on state start once.
 func state_start(state_from):

@@ -2,21 +2,28 @@ extends Node
 
 class_name StateMachine
 
-export(NodePath) onready var current_state = get_node(current_state) as SMState
+func fuckin_hell(a):
+	if a is NodePath:
+		return a
+	return a.get_path()
+
+#fuck this god DAMN this is obscene
+export(NodePath) onready var current_state = get_node(current_state if (current_state is NodePath) else current_state.get_path()) as Node
 var state_list = []
 var state_name_lookup = {}
-export(NodePath) onready var agent = get_node(agent) # wish I could export what type this was to maximize modularity
+#export(NodePath) onready var agent = get_node(agent) # wish I could export what type this was to maximize modularity
 # can you override variables when inheriting? if so, override with the type of
 # whatever the the state machine is being used by
 
 
-# Called when the node enters the scene tree for the first time.
+# Don't override! If you do, remember to call ._ready()
 func _ready():
+	print("Base")
 	for child in self.get_children():
-		if child is SMState:
+		if child is Node:
 			state_list.append(child)
 			state_name_lookup[child.name] = child
-			child.agent = agent
+			child.state_machine = self
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
