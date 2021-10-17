@@ -19,6 +19,8 @@ func state_physics_process(delta):
 		agent.velocity.x = math.approach_exp(delta, agent.velocity.x, agent.move_speed, agent.move_accel_rate)
 	if (not(agent.input_flags & cons.INPUT_SIDE)):
 		agent.velocity.x = math.approach_exp(delta, agent.velocity.x, 0, agent.move_decel_rate)
+		if abs(agent.velocity.x) < 34:
+			state_machine.set_state("Idle")
 	if (agent.is_on_floor() and agent.input_flags & cons.INPUT_UP):
 		state_machine.set_state("Jumping")
 	if (not agent.is_on_floor()):
