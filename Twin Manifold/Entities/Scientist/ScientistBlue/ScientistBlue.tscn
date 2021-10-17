@@ -18,10 +18,12 @@ script = ExtResource( 4 )
 state_machine = NodePath("ScientistStateMachine")
 
 [node name="Placeholder2" type="Sprite" parent="."]
+modulate = Color( 0.482353, 0.823529, 0.866667, 1 )
 scale = Vector2( 3, 3 )
 texture = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0.445435, 0 )
 shape = SubResource( 1 )
 
 [node name="ScientistStateMachine" type="Node" parent="."]

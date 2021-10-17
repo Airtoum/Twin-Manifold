@@ -14,7 +14,7 @@ export(float) var move_speed = 200.0
 export(float) var jump_speed = 420.0
 export(float) var move_accel_rate = 0.000001 # per second, reciprocal
 export(float) var move_decel_rate = 0.0001 # per second, reciprocal
-export(float) var coyote_time_limit = 0.2
+export(float) var coyote_time_limit = 0.08
 
 const INPUT_LEFT = 1
 const INPUT_RIGHT = 2
