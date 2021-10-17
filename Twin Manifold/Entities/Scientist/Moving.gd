@@ -13,9 +13,9 @@ func state_start(from_state):
 
 func state_physics_process(delta):
 	if (agent.input_flags & cons.INPUT_LEFT):
-		agent.velocity.x = math.weightedSum(agent.velocity.x, 0.8, -agent.move_speed, 0.2)
+		agent.velocity.x = math.approach_exp(agent.velocity.x, agent.velocity.x, -agent.move_speed, 0.8)
 	if (agent.input_flags & cons.INPUT_RIGHT):
-		agent.velocity.x = math.weightedSum(agent.velocity.x, 0.8, agent.move_speed, 0.2)
+		agent.velocity.x = math.approach_exp(agent.velocity.x, agent.velocity.x, agent.move_speed, 0.8)
 	if (agent.is_on_floor() and agent.input_flags & cons.INPUT_UP):
 		state_machine.set_state("Jumping")
 	if (not agent.is_on_floor()):
