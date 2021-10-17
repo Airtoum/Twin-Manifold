@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Assets/Placeholder2.png" type="Texture" id=1]
 [ext_resource path="res://Entities/Scientist/ScientistStateMachine.gd" type="Script" id=2]
@@ -6,6 +6,9 @@
 [ext_resource path="res://Entities/Scientist/Scientist.gd" type="Script" id=4]
 [ext_resource path="res://Entities/Scientist/Moving.gd" type="Script" id=5]
 [ext_resource path="res://StateMachine/SMState.gd" type="Script" id=6]
+[ext_resource path="res://Entities/Scientist/Jumping.gd" type="Script" id=7]
+[ext_resource path="res://Entities/Scientist/Falling.gd" type="Script" id=8]
+[ext_resource path="res://DebugText.gd" type="Script" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 15, 30 )
@@ -34,10 +37,32 @@ script = ExtResource( 3 )
 script = ExtResource( 5 )
 
 [node name="Jumping" type="Node" parent="ScientistStateMachine"]
-script = ExtResource( 6 )
+script = ExtResource( 7 )
 
 [node name="Falling" type="Node" parent="ScientistStateMachine"]
-script = ExtResource( 6 )
+script = ExtResource( 8 )
 
 [node name="Ducking" type="Node" parent="ScientistStateMachine"]
 script = ExtResource( 6 )
+
+[node name="StateDebug" type="Label" parent="."]
+margin_left = 32.9633
+margin_top = -47.6632
+margin_right = 72.9633
+margin_bottom = -33.6632
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+property = "../ScientistStateMachine:current_state:name"
+
+[node name="VelocityDebug" type="Label" parent="."]
+margin_left = 33.8542
+margin_top = -22.718
+margin_right = 73.8542
+margin_bottom = -8.71796
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+property = "..:velocity"

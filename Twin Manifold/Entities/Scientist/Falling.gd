@@ -8,7 +8,7 @@ func state_init():
 	agent = state_machine.agent
 	
 func state_start(from_state):
-	agent.velocity.y = agent.jump_speed
+	pass
 
 
 func state_physics_process(delta):
