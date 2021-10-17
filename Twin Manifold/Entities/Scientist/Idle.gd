@@ -12,6 +12,7 @@ func state_start(from_state):
 
 
 func state_physics_process(delta):
+	agent.snap = Vector2.DOWN
 	if (agent.input_flags & cons.INPUT_DOWN):
 		state_machine.set_state("Ducking")
 	elif (agent.is_on_floor() and agent.input_flags & cons.INPUT_UP):
