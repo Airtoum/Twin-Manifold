@@ -48,10 +48,9 @@ config/name="Twin Manifold"
 run/main_scene="res://Levels/Level A.tscn"
 config/icon="res://icon.png"
 
-[autoload]
+[debug]
 
-cons="*res://Global/cons.gd"
-math="*res://Global/math.gd"
+gdscript/warnings/unused_argument=false
 
 [rendering]
 

@@ -17,12 +17,14 @@ var state_name_lookup = {}
 
 
 # turns out build-in functions aren't overridden. This happens before subclass's _ready.
-func _ready():
+# which we don't want. CALL THIS AT BOTTOM OF READY
+func state_machine_ready():
 	for child in self.get_children():
-		if child is Node:
+		if child is SMState:
 			state_list.append(child)
 			state_name_lookup[child.name] = child
 			child.state_machine = self
+			child.state_init()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -37,8 +39,8 @@ func set_state(name):
 	var new_state = state_name_lookup[name]
 	if !new_state: # if not null, proceed
 		return
-	current_state.end_state(new_state)
-	new_state.start_state(current_state) # current state hasn't changed yet, hopefully this doesn't raise any unwanted behaviour
+	current_state.state_end(new_state)
+	new_state.state_start(current_state) # current state hasn't changed yet, hopefully this doesn't raise any unwanted behaviour
 	current_state = new_state
 	
 	

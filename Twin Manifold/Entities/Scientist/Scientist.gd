@@ -29,4 +29,5 @@ func _ready():
 func _physics_process(delta):
 	state_machine.state_machine_physics_process(delta)
 	velocity += gravity
+	print(state_machine.current_state.name)
 	velocity = move_and_slide_with_snap(velocity, snap, Vector2.UP)
