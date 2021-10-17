@@ -14,20 +14,44 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://StateMachine/SMState.gd"
 }, {
+"base": "KinematicBody2D",
+"class": "Scientist",
+"language": "GDScript",
+"path": "res://Entities/Scientist/Scientist.gd"
+}, {
 "base": "Node",
 "class": "StateMachine",
 "language": "GDScript",
 "path": "res://StateMachine/StateMachine.gd"
+}, {
+"base": "Object",
+"class": "cons",
+"language": "GDScript",
+"path": "res://Global/cons.gd"
+}, {
+"base": "Object",
+"class": "math",
+"language": "GDScript",
+"path": "res://Global/math.gd"
 } ]
 _global_script_class_icons={
 "SMState": "",
-"StateMachine": ""
+"Scientist": "",
+"StateMachine": "",
+"cons": "",
+"math": ""
 }
 
 [application]
 
 config/name="Twin Manifold"
+run/main_scene="res://Levels/Level A.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+cons="*res://Global/cons.gd"
+math="*res://Global/math.gd"
 
 [rendering]
 

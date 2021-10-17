@@ -16,9 +16,8 @@ var state_name_lookup = {}
 # whatever the the state machine is being used by
 
 
-# Don't override! If you do, remember to call ._ready()
+# turns out build-in functions aren't overridden. This happens before subclass's _ready.
 func _ready():
-	print("Base")
 	for child in self.get_children():
 		if child is Node:
 			state_list.append(child)
@@ -27,10 +26,10 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func state_machine_process(delta):
 	current_state.state_process(delta)
 
-func _physics_process(delta):
+func state_machine_physics_process(delta):
 	current_state.state_physics_process(delta)
 
 

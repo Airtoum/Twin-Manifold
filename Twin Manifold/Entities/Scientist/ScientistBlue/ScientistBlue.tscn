@@ -1,14 +1,18 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Assets/Placeholder2.png" type="Texture" id=1]
 [ext_resource path="res://Entities/Scientist/ScientistStateMachine.gd" type="Script" id=2]
 [ext_resource path="res://Entities/Scientist/Idle.gd" type="Script" id=3]
+[ext_resource path="res://Entities/Scientist/Scientist.gd" type="Script" id=4]
+[ext_resource path="res://Entities/Scientist/Moving.gd" type="Script" id=5]
 
-[sub_resource type="CapsuleShape2D" id=1]
-radius = 15.0
-height = 30.0
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 15, 30 )
 
 [node name="ScientistBlue" type="KinematicBody2D"]
+script = ExtResource( 4 )
+input_flags = 6
+state_machine = NodePath("ScientistStateMachine")
 
 [node name="Placeholder2" type="Sprite" parent="."]
 scale = Vector2( 3, 3 )
@@ -20,6 +24,16 @@ shape = SubResource( 1 )
 [node name="ScientistStateMachine" type="Node" parent="."]
 script = ExtResource( 2 )
 current_state = NodePath("Idle")
+agent = NodePath("..")
 
 [node name="Idle" type="Node" parent="ScientistStateMachine"]
 script = ExtResource( 3 )
+
+[node name="Moving" type="Node" parent="ScientistStateMachine"]
+script = ExtResource( 5 )
+
+[node name="Jumping" type="Node" parent="ScientistStateMachine"]
+
+[node name="Falling" type="Node" parent="ScientistStateMachine"]
+
+[node name="Ducking" type="Node" parent="ScientistStateMachine"]
