@@ -8,15 +8,16 @@ var snap = Vector2.ZERO
 export var normal_gravity = Vector2.DOWN * 1700.4
 export var jump_gravity : Vector2 = normal_gravity #Vector2.DOWN * 900.4
 var gravity = normal_gravity
-export(int, FLAGS, "Left", "Right", "Up", "Down") var input_flags
+export(int, FLAGS, "Left", "Right", "Up", "Down", "Clone") var input_flags
 export(NodePath) onready var state_machine = get_node(state_machine) as StateMachine
-export(float) var move_speed = 200.0
+export(float) var move_speed = 230.0
 export(float) var jump_speed = 620 #420.0
 export(float) var move_accel_rate = 0.000001 # per second, reciprocal
 export(float) var move_decel_rate = 0.0001 # per second, reciprocal
 export(float) var coyote_time_limit = 0.08
 export(bool) var facing_left = false
 
+export(PackedScene) onready var Clone
 export(NodePath) onready var graphic = get_node(graphic) as Sprite
 
 const INPUT_LEFT = 1
@@ -42,6 +43,7 @@ func _physics_process(delta):
 	#print(state_machine.current_state.name)
 	#print(is_on_floor())
 	velocity = move_and_slide_with_snap(velocity, snap, Vector2.UP)
+	check_and_spawn_clone()
 
 
 func set_facing_left():
@@ -49,3 +51,10 @@ func set_facing_left():
 		facing_left = true
 	if (not self.input_flags & cons.INPUT_LEFT and self.input_flags & cons.INPUT_RIGHT):
 		facing_left = false
+		
+func check_and_spawn_clone():
+	if self.input_flags & cons.INPUT_CLONE:
+		var clone = Clone.instance()
+		clone.position = self.position
+		if clone is Scientist:
+			clone.velocity = self.velocity

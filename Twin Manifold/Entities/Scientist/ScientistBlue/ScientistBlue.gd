@@ -21,3 +21,5 @@ func _physics_process(delta):
 		self.input_flags |= cons.INPUT_UP
 	if Input.is_action_pressed("Down"):
 		self.input_flags |= cons.INPUT_DOWN
+	if Input.is_action_pressed("Clone"):
+		self.input_flags |= cons.INPUT_CLONE
