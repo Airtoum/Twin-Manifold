@@ -70,6 +70,7 @@ func check_and_spawn_clone():
 		clone.position = self.position
 		if clone.is_in_group("Scientist"):
 			clone.velocity = self.velocity
+			clone.facing_left = self.facing_left
 			clone.starting_state = self.state_machine.current_state_name
 			clone.do_starting_state()
 			print(self.state_machine.current_state_name)
