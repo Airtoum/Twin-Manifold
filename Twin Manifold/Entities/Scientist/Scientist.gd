@@ -16,6 +16,7 @@ export(float) var move_accel_rate = 0.000001 # per second, reciprocal
 export(float) var move_decel_rate = 0.0001 # per second, reciprocal
 export(float) var coyote_time_limit = 0.08
 export(bool) var facing_left = false
+var starting_state = null
 
 export(PackedScene) onready var Clone
 export(NodePath) onready var graphic = get_node(graphic) as Sprite
@@ -28,7 +29,12 @@ const INPUT_DOWN = 8
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	add_to_group("Scientist")
+	
+func do_starting_state():
+	if starting_state:
+		state_machine.set_state(starting_state)
+		print("Starting state was " + starting_state + ", current state is " + state_machine.current_state_name)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -52,9 +58,30 @@ func set_facing_left():
 	if (not self.input_flags & cons.INPUT_LEFT and self.input_flags & cons.INPUT_RIGHT):
 		facing_left = false
 		
+func is_both_left_right_input():
+	return input_flags & cons.INPUT_SIDE == cons.INPUT_SIDE
+		
 func check_and_spawn_clone():
 	if self.input_flags & cons.INPUT_CLONE:
+		print("CLONING")
 		var clone = Clone.instance()
+		print(clone)
+		get_parent().add_child(clone)
 		clone.position = self.position
-		if clone is Scientist:
+		if clone.is_in_group("Scientist"):
 			clone.velocity = self.velocity
+			clone.starting_state = self.state_machine.current_state_name
+			clone.do_starting_state()
+			print(self.state_machine.current_state_name)
+			match self.state_machine.current_state_name:
+				"Idle":
+					clone.input_flags = cons.INPUT_NONE
+				"Moving":
+					clone.input_flags = self.input_flags & cons.INPUT_SIDE
+				"Jumping":
+					clone.input_flags = (self.input_flags & cons.INPUT_SIDE) | cons.INPUT_UP
+				"Falling":
+					clone.starting_state = "Jumping"
+					clone.input_flags = (self.input_flags & cons.INPUT_SIDE) | cons.INPUT_UP
+				"Ducking":
+					clone.input_flags = cons.INPUT_DOWN

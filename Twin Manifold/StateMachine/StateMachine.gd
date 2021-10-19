@@ -9,6 +9,7 @@ func fuckin_hell(a):
 
 #fuck this god DAMN this is obscene
 export(NodePath) onready var current_state = get_node(current_state if (current_state is NodePath) else current_state.get_path()) as Node
+var current_state_name = ""
 var state_list = []
 var state_name_lookup = {}
 #export(NodePath) onready var agent = get_node(agent) # wish I could export what type this was to maximize modularity
@@ -25,6 +26,11 @@ func state_machine_ready():
 			state_name_lookup[child.name] = child
 			child.state_machine = self
 			child.state_init()
+	if not current_state is SMState:
+		push_error("State Machine's current state is not a SMState object")
+	else:
+		current_state.state_start(null)
+		current_state_name = current_state.name
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -42,5 +48,5 @@ func set_state(name):
 	current_state.state_end(new_state)
 	new_state.state_start(current_state) # current state hasn't changed yet, hopefully this doesn't raise any unwanted behaviour
 	current_state = new_state
-	
+	current_state_name = current_state.name
 	

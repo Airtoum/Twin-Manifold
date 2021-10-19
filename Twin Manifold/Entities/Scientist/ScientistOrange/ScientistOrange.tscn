@@ -1,21 +1,36 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Assets/Placeholder2.png" type="Texture" id=1]
 [ext_resource path="res://Entities/Scientist/ScientistStateMachine.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Entities/Scientist/ScientistOrange/ScientistOrange.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Entities/Scientist/ScientistBlue/ScientistBlue.gd" type="Script" id=4]
 [ext_resource path="res://DebugText.gd" type="Script" id=9]
 [ext_resource path="res://Assets/Scientist.png" type="Texture" id=10]
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends Scientist
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+"
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 15, 30 )
 
-[node name="ScientistBlue" type="KinematicBody2D"]
-modulate = Color( 0.180392, 0.596078, 1, 1 )
+[node name="ScientistOrange" type="KinematicBody2D"]
 collision_layer = 2
-script = ExtResource( 4 )
+script = SubResource( 2 )
 state_machine = NodePath("ScientistStateMachine")
-Clone = ExtResource( 3 )
 graphic = NodePath("Scientist")
 
 [node name="Placeholder2" type="Sprite" parent="."]
@@ -33,6 +48,7 @@ flip_h = true
 shape = SubResource( 1 )
 
 [node name="ScientistStateMachine" parent="." instance=ExtResource( 2 )]
+current_state = NodePath("../../ScientistOrange/ScientistStateMachine/Idle")
 
 [node name="StateDebug" type="Label" parent="."]
 margin_left = 32.9633
@@ -55,3 +71,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 property = "..:velocity"
+
+[node name="InputDebug" type="Label" parent="."]
+margin_left = 34.8553
+margin_top = 3.97883
+margin_right = 74.8553
+margin_bottom = 17.9789
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+property = "..:input_flags"

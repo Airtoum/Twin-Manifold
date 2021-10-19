@@ -19,7 +19,7 @@ func state_physics_process(delta):
 		state_machine.set_state("Ducking")
 	elif (agent.is_on_floor() and agent.input_flags & cons.INPUT_UP):
 		state_machine.set_state("Jumping")
-	elif (agent.input_flags & cons.INPUT_SIDE):
+	elif (agent.input_flags & cons.INPUT_SIDE and not agent.is_both_left_right_input()):
 		state_machine.set_state("Moving")
 	if (not agent.is_on_floor()):
 		state_machine.set_state("Falling")
