@@ -42,7 +42,7 @@ func _process(delta):
 	set_facing_left()
 	graphic.flip_h = not facing_left
 
-
+# Subclass physics process happens first before superclass
 func _physics_process(delta):
 	state_machine.state_machine_physics_process(delta)
 	velocity += gravity * delta
@@ -50,6 +50,7 @@ func _physics_process(delta):
 	#print(is_on_floor())
 	velocity = move_and_slide_with_snap(velocity, snap, Vector2.UP)
 	check_and_spawn_clone()
+	self.input_flags &= cons.INPUT_HOLD # turn off clone/jump input
 
 
 func set_facing_left():

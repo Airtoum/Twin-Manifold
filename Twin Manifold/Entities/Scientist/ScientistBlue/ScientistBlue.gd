@@ -11,6 +11,7 @@ func _ready():
 	pass # Replace with function body.
 
 
+# subclass happens first before superclass
 func _physics_process(delta):
 	self.input_flags = cons.INPUT_NONE
 	if Input.is_action_pressed("Left"):
