@@ -81,9 +81,11 @@ func check_and_spawn_clone():
 				"Moving":
 					clone.input_flags = self.input_flags & cons.INPUT_SIDE
 				"Jumping":
-					clone.input_flags = (self.input_flags & cons.INPUT_SIDE) | cons.INPUT_UP
+					clone.input_flags = cons.INPUT_UP
+					clone.input_flags |= cons.INPUT_LEFT if facing_left else cons.INPUT_RIGHT
 				"Falling":
 					clone.starting_state = "Jumping"
-					clone.input_flags = (self.input_flags & cons.INPUT_SIDE) | cons.INPUT_UP
+					clone.input_flags = cons.INPUT_UP
+					clone.input_flags |= cons.INPUT_LEFT if facing_left else cons.INPUT_RIGHT
 				"Ducking":
 					clone.input_flags = cons.INPUT_DOWN
