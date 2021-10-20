@@ -18,10 +18,9 @@ func _physics_process(delta):
 		self.input_flags |= cons.INPUT_LEFT
 	if Input.is_action_pressed("Right"):
 		self.input_flags |= cons.INPUT_RIGHT
-	if Input.is_action_pressed("Up"):
+	if Input.is_action_just_pressed("Up"):
 		self.input_flags |= cons.INPUT_UP
 	if Input.is_action_pressed("Down"):
 		self.input_flags |= cons.INPUT_DOWN
-	self.input_flags &= cons.INPUT_ORTH # turn off clone input
 	if Input.is_action_just_pressed("Clone"):
 		self.input_flags |= cons.INPUT_CLONE
