@@ -18,6 +18,7 @@ export(float) var coyote_time_limit = 0.08
 export(bool) var facing_left = false
 var starting_state = null
 var touching_scientists = []
+var age = 0.0
 
 export(PackedScene) onready var Clone
 export(NodePath) onready var graphic = get_node(graphic) as Sprite
@@ -46,14 +47,16 @@ func _process(delta):
 # Subclass physics process happens first before superclass
 func _physics_process(delta):
 	state_machine.state_machine_physics_process(delta)
-	for other_scientist in touching_scientists:
-		scientist_interact(other_scientist)
+	if age > 0.1:
+		for other_scientist in touching_scientists:
+			scientist_interact(other_scientist)
 	velocity += gravity * delta
 	#print(state_machine.current_state.name)
 	#print(is_on_floor())
 	velocity = move_and_slide_with_snap(velocity, snap, Vector2.UP)
 	check_and_spawn_clone()
 	self.input_flags &= cons.INPUT_HOLD # turn off clone/jump input
+	age += delta
 
 
 func set_facing_left():
@@ -100,7 +103,7 @@ func scientist_interact_add(other):
 	
 func scientist_interact_remove(other):
 	if other.is_in_group("Scientist") and not other == self:
-		touching_scientists.remove(other)
+		touching_scientists.erase(other)
 
 func scientist_interact(other):
 	if other.is_in_group("Scientist"):

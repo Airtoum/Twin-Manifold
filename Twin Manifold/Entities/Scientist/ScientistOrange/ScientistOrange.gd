@@ -40,7 +40,24 @@ func bounce_off_walls():
 
 func _on_ScientistInteract_body_entered(body):
 	scientist_interact_add(body)
+	if body.is_in_group("Scientist"):
+		if body.state_machine.current_state_name == "Idle" and self.state_machine.current_state_name in ["Moving", "Jumping", "Falling"]:
+			if not self.facing_left:
+				self.input_flags &= cons.N_INPUT_RIGHT
+				self.input_flags |= cons.INPUT_LEFT
+			else:
+				self.input_flags &= cons.N_INPUT_LEFT
+				self.input_flags |= cons.INPUT_RIGHT
 
 
 func _on_ScientistInteract_body_exited(body):
 	scientist_interact_remove(body)
+
+
+func scientist_interact(other):
+	if other.is_in_group("Scientist"):
+		match other.state_machine.current_state_name:
+			"Idle":
+				pass
+	# also do base interactions
+	.scientist_interact(other)
