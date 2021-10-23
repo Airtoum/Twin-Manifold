@@ -8,7 +8,7 @@ extends Scientist
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	add_to_group("ScientistOrange")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -39,7 +39,8 @@ func bounce_off_walls():
 
 
 func _on_ScientistInteract_body_entered(body):
-	match state_machine.current_state_name:
-		"Ducking":
-			if body is Scientist:
-				body.state_machine.set_state("Jumping")
+	scientist_interact_add(body)
+
+
+func _on_ScientistInteract_body_exited(body):
+	scientist_interact_remove(body)

@@ -72,3 +72,4 @@ __meta__ = {
 }
 property = "..:input_flags"
 [connection signal="body_entered" from="ScientistInteract" to="." method="_on_ScientistInteract_body_entered"]
+[connection signal="body_exited" from="ScientistInteract" to="." method="_on_ScientistInteract_body_exited"]
