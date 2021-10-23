@@ -15,3 +15,9 @@ const INPUT_ORTH = 15   # 01111
 const INPUT_SIDE = 3    #  0011
 const INPUT_PRESS = 20  # 10100 for masking inputs that only activate on press
 const INPUT_HOLD = 11   # 01011 for masking inputs that only activate on press
+
+const N_INPUT_LEFT = 30  # 11110 for turning left off
+const N_INPUT_RIGHT = 29 # 11101 for turning right off (~ did something weird)
+const N_INPUT_UP = 27    # 11011 for turning up off
+const N_INPUT_DOWN = 23  # 10111 for turning down off
+const N_INPUT_CLONE = 15 # 01111 redundant but okay
