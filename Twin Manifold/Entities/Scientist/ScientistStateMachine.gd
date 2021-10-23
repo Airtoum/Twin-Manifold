@@ -1,7 +1,8 @@
 extends StateMachine
 
 
-export(NodePath) onready var agent = get_node(agent) as Scientist
+export(NodePath) onready var agent_path
+onready var agent = get_node(agent_path) as Scientist
 
 
 # Called when the node enters the scene tree for the first time.

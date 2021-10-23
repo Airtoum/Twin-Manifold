@@ -10,7 +10,6 @@
 [node name="ScientistStateMachine" type="Node"]
 script = ExtResource( 4 )
 current_state = NodePath("Idle")
-agent = NodePath("..")
 
 [node name="Idle" type="Node" parent="."]
 script = ExtResource( 5 )

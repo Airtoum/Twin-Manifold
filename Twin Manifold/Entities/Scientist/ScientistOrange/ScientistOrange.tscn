@@ -38,6 +38,7 @@ shape = SubResource( 1 )
 
 [node name="ScientistStateMachine" parent="." instance=ExtResource( 2 )]
 current_state = NodePath("../../ScientistOrange/ScientistStateMachine/Idle")
+agent_path = NodePath("..")
 
 [node name="StateDebug" type="Label" parent="."]
 margin_left = 32.9633
