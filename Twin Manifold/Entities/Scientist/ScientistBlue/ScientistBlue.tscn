@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Assets/Placeholder2.png" type="Texture" id=1]
 [ext_resource path="res://Entities/Scientist/ScientistStateMachine.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Entities/Scientist/ScientistOrange/ScientistOrange.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Entities/Scientist/ScientistBlue/ScientistBlue.gd" type="Script" id=4]
+[ext_resource path="res://MiscThings/CopyCollider.gd" type="Script" id=5]
 [ext_resource path="res://DebugText.gd" type="Script" id=9]
 [ext_resource path="res://Assets/Scientist.png" type="Texture" id=10]
 
@@ -36,6 +37,8 @@ shape = SubResource( 1 )
 
 [node name="Collision2" type="CollisionShape2D" parent="ScientistInteract"]
 shape = SubResource( 1 )
+script = ExtResource( 5 )
+copy_this = NodePath("../../Collision")
 
 [node name="ScientistStateMachine" parent="." instance=ExtResource( 2 )]
 agent_path = NodePath("..")
