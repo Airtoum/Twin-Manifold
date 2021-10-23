@@ -14,11 +14,13 @@ export(float) var move_speed = 230.0
 export(float) var jump_speed = 620 #420.0
 export(float) var move_accel_rate = 0.000001 # per second, reciprocal
 export(float) var move_decel_rate = 0.0001 # per second, reciprocal
-export(float) var coyote_time_limit = 0.08
+export(float) var coyote_time_limit = 0.13 # ~8 frames at 60fps
 export(bool) var facing_left = false
 var starting_state = null
 var touching_scientists = []
 var age = 0.0
+var no_interact_until_age = 0.1
+var the_clone_i_just_made = null
 
 export(PackedScene) onready var Clone
 export(NodePath) onready var graphic = get_node(graphic) as Sprite
@@ -47,7 +49,7 @@ func _process(delta):
 # Subclass physics process happens first before superclass
 func _physics_process(delta):
 	state_machine.state_machine_physics_process(delta)
-	if age > 0.1:
+	if self.age > self.no_interact_until_age:
 		for other_scientist in touching_scientists:
 			scientist_interact(other_scientist)
 	velocity += gravity * delta
@@ -95,10 +97,13 @@ func check_and_spawn_clone():
 					clone.input_flags |= cons.INPUT_LEFT if facing_left else cons.INPUT_RIGHT
 				"Ducking":
 					clone.input_flags = cons.INPUT_DOWN
+		self.the_clone_i_just_made = clone
 					
 
 func scientist_interact_add(other):
 	if other.is_in_group("Scientist") and not other == self:
+		if other == self.the_clone_i_just_made and other.age < other.no_interact_until_age:
+			return
 		touching_scientists.append(other)
 	
 func scientist_interact_remove(other):

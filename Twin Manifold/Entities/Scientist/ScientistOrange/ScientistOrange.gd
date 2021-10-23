@@ -39,6 +39,8 @@ func bounce_off_walls():
 
 
 func _on_ScientistInteract_body_entered(body):
+	if self.age < self.no_interact_until_age:
+		return
 	scientist_interact_add(body)
 	if body.is_in_group("Scientist"):
 		if body.state_machine.current_state_name == "Idle" and self.state_machine.current_state_name in ["Moving", "Jumping", "Falling"]:
