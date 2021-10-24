@@ -23,7 +23,7 @@ var no_interact_until_age = 0.1
 var the_clone_i_just_made = null
 
 export(PackedScene) onready var Clone
-export(NodePath) onready var graphic = get_node(graphic) as Sprite
+export(NodePath) onready var graphic = get_node(graphic) # Sprite or AnimatedSprite
 
 const INPUT_LEFT = 1
 const INPUT_RIGHT = 2
