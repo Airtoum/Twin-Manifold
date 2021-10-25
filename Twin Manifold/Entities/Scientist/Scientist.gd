@@ -145,6 +145,9 @@ func set_collider(shape_name):
 	if shape_name == "Duck":
 		collider.disabled = true
 		collider_duck.disabled = false
+	if shape_name == "Dead":
+		collider.disabled = true
+		collider_duck.disabled = true
 		
 func die():
 	self.state_machine.set_state("Dead")

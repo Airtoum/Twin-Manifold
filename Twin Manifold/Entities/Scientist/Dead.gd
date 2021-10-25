@@ -14,7 +14,8 @@ func state_init():
 func state_start(from_state):
 	#agent.velocity = Vector2.ZERO
 	agent.play_animation("Die")
-	agent.set_collider("Normal")
+	agent.set_collider("Dead")
+	agent.gravity = Vector2.ZERO
 	dead_timer = 0.0
 
 
