@@ -28,8 +28,8 @@ export(NodePath) onready var graphic_path
 onready var graphic = get_node(graphic_path)
 export(NodePath) var collider_path
 onready var collider = get_node(collider_path)
-onready var collider_shape_height = collider.shape.extents.y
-onready var collider_position = collider.position
+export(NodePath) var collider_duck_path
+onready var collider_duck = get_node(collider_duck_path)
 
 const INPUT_LEFT = 1
 const INPUT_RIGHT = 2
@@ -138,8 +138,8 @@ func set_collider(shape_name):
 	if not collider:
 		return
 	if shape_name == "Normal":
-		collider.shape.extents.y = collider_shape_height
-		collider.position = collider_position
+		collider.disabled = false
+		collider_duck.disabled = true
 	if shape_name == "Duck":
-		collider.shape.extents.y = collider_shape_height / 2
-		collider.position = collider_position + Vector2(0, 15)
+		collider.disabled = true
+		collider_duck.disabled = false

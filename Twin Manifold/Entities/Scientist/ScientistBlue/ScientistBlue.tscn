@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Assets/Placeholder2.png" type="Texture" id=1]
 [ext_resource path="res://Entities/Scientist/ScientistStateMachine.tscn" type="PackedScene" id=2]
@@ -7,6 +7,12 @@
 [ext_resource path="res://MiscThings/CopyCollider.gd" type="Script" id=5]
 [ext_resource path="res://Assets/ScientistBlue.tres" type="SpriteFrames" id=6]
 [ext_resource path="res://DebugText.gd" type="Script" id=9]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 15, 30 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 15, 15 )
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 15, 30 )
@@ -19,6 +25,7 @@ state_machine = NodePath("ScientistStateMachine")
 Clone = ExtResource( 3 )
 graphic_path = NodePath("Scientist")
 collider_path = NodePath("Collision")
+collider_duck_path = NodePath("CollisionDuck")
 
 [node name="Placeholder2" type="Sprite" parent="."]
 visible = false
@@ -34,8 +41,11 @@ offset = Vector2( 0, -4 )
 flip_h = true
 
 [node name="Collision" type="CollisionShape2D" parent="."]
-visible = false
-shape = SubResource( 1 )
+shape = SubResource( 2 )
+
+[node name="CollisionDuck" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 15 )
+shape = SubResource( 3 )
 
 [node name="ScientistInteract" type="Area2D" parent="."]
 
@@ -43,7 +53,7 @@ shape = SubResource( 1 )
 visible = false
 shape = SubResource( 1 )
 script = ExtResource( 5 )
-copy_this = NodePath("../../Collision")
+copy_these_paths = [ NodePath("../../Collision"), NodePath("../../CollisionDuck") ]
 
 [node name="ScientistStateMachine" parent="." instance=ExtResource( 2 )]
 agent_path = NodePath("..")
