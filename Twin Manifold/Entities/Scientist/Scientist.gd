@@ -72,6 +72,8 @@ func _physics_process(delta):
 	check_and_spawn_clone()
 	self.input_flags &= cons.INPUT_HOLD # turn off clone/jump input
 	age += delta
+	if Input.is_action_just_pressed("ui_accept"):
+		die()
 
 
 func set_facing_left():
@@ -143,3 +145,6 @@ func set_collider(shape_name):
 	if shape_name == "Duck":
 		collider.disabled = true
 		collider_duck.disabled = false
+		
+func die():
+	self.state_machine.set_state("Dead")
