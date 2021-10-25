@@ -12,7 +12,11 @@ func state_start(from_state):
 	coyote_time = 0.0
 	if from_state.name in ["Jumping", "Falling"]:
 		coyote_time = INF
+	agent.set_collider("Normal")
 
+func state_process(delta):
+	if Vector2.UP.dot(agent.velocity) < 0: # if going down
+		agent.play_animation("Fall")
 
 func state_physics_process(delta):
 	var i_b_l_r_i = agent.is_both_left_right_input()
@@ -23,7 +27,10 @@ func state_physics_process(delta):
 	if (not(agent.input_flags & cons.INPUT_SIDE) or i_b_l_r_i):
 		agent.velocity.x = math.approach_exp(delta, agent.velocity.x, 0, agent.move_decel_rate)
 	if (agent.is_on_floor()):
-		state_machine.set_state("Moving")
+		if abs(agent.velocity.x) < 34:
+			state_machine.set_state("Idle")
+		else:
+			state_machine.set_state("Moving")
 	if (coyote_time < agent.coyote_time_limit and agent.input_flags & cons.INPUT_UP):
 		print("Coyote Jump! " + str(coyote_time) + " " + str(agent.coyote_time_limit))
 		state_machine.set_state("Jumping")

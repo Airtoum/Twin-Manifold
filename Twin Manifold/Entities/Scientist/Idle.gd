@@ -9,7 +9,8 @@ func state_init():
 
 func state_start(from_state):
 	#agent.velocity = Vector2.ZERO
-	pass
+	agent.play_animation("Idle")
+	agent.set_collider("Normal")
 
 
 func state_physics_process(delta):

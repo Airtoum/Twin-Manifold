@@ -9,7 +9,7 @@
 
 [node name="ScientistStateMachine" type="Node"]
 script = ExtResource( 4 )
-current_state = NodePath("Idle")
+current_state_path = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="."]
 script = ExtResource( 5 )

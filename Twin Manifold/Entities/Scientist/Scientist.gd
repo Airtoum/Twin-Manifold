@@ -21,9 +21,15 @@ var touching_scientists = []
 var age = 0.0
 var no_interact_until_age = 0.1
 var the_clone_i_just_made = null
+var has_lived_for_1_frame = false
 
 export(PackedScene) onready var Clone
-export(NodePath) onready var graphic = get_node(graphic) # Sprite or AnimatedSprite
+export(NodePath) onready var graphic_path
+onready var graphic = get_node(graphic_path)
+export(NodePath) var collider_path
+onready var collider = get_node(collider_path)
+onready var collider_shape_height = collider.shape.extents.y
+onready var collider_position = collider.position
 
 const INPUT_LEFT = 1
 const INPUT_RIGHT = 2
@@ -34,20 +40,28 @@ const INPUT_DOWN = 8
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	add_to_group("Scientist")
+	self.visible = has_lived_for_1_frame
+	collider = get_node(collider_path)
 	
 func do_starting_state():
+	graphic = get_node(graphic_path)
+	collider = get_node(collider_path)
 	if starting_state:
 		state_machine.set_state(starting_state)
-		print("Starting state was " + starting_state + ", current state is " + state_machine.current_state_name)
+		#print("Starting state was " + starting_state + ", current state is " + state_machine.current_state_name)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	set_facing_left()
 	graphic.flip_h = not facing_left
+	self.visible = has_lived_for_1_frame
+	has_lived_for_1_frame = true
+	state_machine.state_machine_process(delta)
 
 # Subclass physics process happens first before superclass
 func _physics_process(delta):
+	velocity = move_and_slide_with_snap(velocity, snap, Vector2.UP)
 	state_machine.state_machine_physics_process(delta)
 	if self.age > self.no_interact_until_age:
 		for other_scientist in touching_scientists:
@@ -55,7 +69,6 @@ func _physics_process(delta):
 	velocity += gravity * delta
 	#print(state_machine.current_state.name)
 	#print(is_on_floor())
-	velocity = move_and_slide_with_snap(velocity, snap, Vector2.UP)
 	check_and_spawn_clone()
 	self.input_flags &= cons.INPUT_HOLD # turn off clone/jump input
 	age += delta
@@ -72,9 +85,9 @@ func is_both_left_right_input():
 		
 func check_and_spawn_clone():
 	if self.input_flags & cons.INPUT_CLONE:
-		print("CLONING")
+		#print("CLONING")
 		var clone = Clone.instance()
-		print(clone)
+		#print(clone)
 		get_parent().add_child(clone)
 		clone.position = self.position
 		if clone.is_in_group("Scientist"):
@@ -82,7 +95,7 @@ func check_and_spawn_clone():
 			clone.facing_left = self.facing_left
 			clone.starting_state = self.state_machine.current_state_name
 			clone.do_starting_state()
-			print(self.state_machine.current_state_name)
+			#print(self.state_machine.current_state_name)
 			match self.state_machine.current_state_name:
 				"Idle":
 					clone.input_flags = cons.INPUT_NONE
@@ -115,3 +128,18 @@ func scientist_interact(other):
 		match other.state_machine.current_state_name:
 			"Ducking":
 				self.state_machine.set_state("Jumping")
+
+func play_animation(name):
+	if graphic:
+		self.graphic.play(name)
+	
+	
+func set_collider(shape_name):
+	if not collider:
+		return
+	if shape_name == "Normal":
+		collider.shape.extents.y = collider_shape_height
+		collider.position = collider_position
+	if shape_name == "Duck":
+		collider.shape.extents.y = collider_shape_height / 2
+		collider.position = collider_position + Vector2(0, 15)

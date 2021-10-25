@@ -11,7 +11,12 @@ func state_start(from_state):
 	agent.snap = Vector2.ZERO
 	agent.velocity.y = -agent.jump_speed
 	agent.gravity = agent.jump_gravity
+	agent.play_animation("Jump")
+	agent.set_collider("Normal")
 
+func state_process(delta):
+	if Vector2.UP.dot(agent.velocity) < 0: # if going down
+		agent.play_animation("Fall")
 
 func state_physics_process(delta):
 	var i_b_l_r_i = agent.is_both_left_right_input()

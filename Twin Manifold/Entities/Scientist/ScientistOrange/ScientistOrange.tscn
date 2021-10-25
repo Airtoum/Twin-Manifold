@@ -11,10 +11,12 @@
 extents = Vector2( 15, 30 )
 
 [node name="ScientistOrange" type="KinematicBody2D"]
+modulate = Color( 1, 0.941176, 0.827451, 1 )
 collision_layer = 2
 script = ExtResource( 3 )
 state_machine = NodePath("ScientistStateMachine")
-graphic = NodePath("Scientist")
+graphic_path = NodePath("Scientist")
+collider_path = NodePath("Collision")
 
 [node name="Placeholder2" type="Sprite" parent="."]
 visible = false
@@ -29,6 +31,7 @@ animation = "Idle"
 flip_h = true
 
 [node name="Collision" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource( 1 )
 
 [node name="ScientistInteract" type="Area2D" parent="."]
@@ -36,12 +39,12 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="Collision2" type="CollisionShape2D" parent="ScientistInteract"]
+visible = false
 shape = SubResource( 1 )
 script = ExtResource( 4 )
 copy_this = NodePath("../../Collision")
 
 [node name="ScientistStateMachine" parent="." instance=ExtResource( 2 )]
-current_state = NodePath("../../ScientistOrange/ScientistStateMachine/Idle")
 agent_path = NodePath("..")
 
 [node name="StateDebug" type="Label" parent="."]

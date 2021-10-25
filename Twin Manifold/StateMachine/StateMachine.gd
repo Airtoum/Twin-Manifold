@@ -8,10 +8,12 @@ func fuckin_hell(a):
 	return a.get_path()
 
 #fuck this god DAMN this is obscene
-export(NodePath) onready var current_state = get_node(current_state if (current_state is NodePath) else current_state.get_path()) as Node
+export(NodePath) onready var current_state_path
+onready var current_state : Node = get_node(current_state_path)
 var current_state_name = ""
 var state_list = []
 var state_name_lookup = {}
+export(bool) var debug = false
 #export(NodePath) onready var agent = get_node(agent) # wish I could export what type this was to maximize modularity
 # can you override variables when inheriting? if so, override with the type of
 # whatever the the state machine is being used by
@@ -42,6 +44,8 @@ func state_machine_physics_process(delta):
 
 
 func set_state(name):
+	if debug:
+		print("Switching state from " + current_state_name + " to " + name)
 	var new_state = state_name_lookup[name]
 	if !new_state: # if not null, proceed
 		return
