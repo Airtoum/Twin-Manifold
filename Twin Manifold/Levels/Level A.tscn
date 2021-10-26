@@ -1,18 +1,20 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Tiles/FactoryTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Entities/Scientist/ScientistBlue/ScientistBlue.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Levels/InteractiveTileMap.gd" type="Script" id=3]
+[ext_resource path="res://Tiles/InteractiveTileMap.gd" type="Script" id=3]
 [ext_resource path="res://Assets/Nexa Bold.otf" type="DynamicFontData" id=4]
 [ext_resource path="res://Assets/Placeholder.png" type="Texture" id=5]
 [ext_resource path="res://MiscThings/UICounter.gd" type="Script" id=6]
 [ext_resource path="res://Entities/Goal/Goal.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Levels/LevelScript.gd" type="Script" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 size = 40
 font_data = ExtResource( 4 )
 
-[node name="Node2D" type="Node2D"]
+[node name="Level A" type="Node2D"]
+script = ExtResource( 8 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
@@ -23,7 +25,11 @@ script = ExtResource( 3 )
 
 [node name="ScientistBlue" parent="." instance=ExtResource( 2 )]
 position = Vector2( 515.958, 447.093 )
+state_machine = NodePath("../../Level A/ScientistBlue/ScientistStateMachine")
 num_clones = 10
+graphic_path = NodePath("../../Level A/ScientistBlue/Scientist")
+collider_path = NodePath("../../Level A/ScientistBlue/Collision")
+collider_duck_path = NodePath("../../Level A/ScientistBlue/CollisionDuck")
 
 [node name="UI" type="Control" parent="."]
 anchor_right = 1.0
@@ -53,7 +59,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 prefix = " x "
-target_path = NodePath("../../../ScientistBlue")
+target_path = NodePath("../../../../Level A/ScientistBlue")
 property = "num_clones"
 
 [node name="Goal" parent="." instance=ExtResource( 7 )]
