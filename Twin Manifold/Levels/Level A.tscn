@@ -1,18 +1,12 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Tiles/FactoryTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Entities/Scientist/ScientistBlue/ScientistBlue.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Tiles/InteractiveTileMap.gd" type="Script" id=3]
-[ext_resource path="res://Assets/Nexa Bold.otf" type="DynamicFontData" id=4]
-[ext_resource path="res://Assets/Placeholder.png" type="Texture" id=5]
-[ext_resource path="res://MiscThings/UICounter.gd" type="Script" id=6]
+[ext_resource path="res://MiscThings/UI.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Entities/Goal/Goal.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Levels/LevelScript.gd" type="Script" id=8]
 [ext_resource path="res://Entities/Button/Button.tscn" type="PackedScene" id=9]
-
-[sub_resource type="DynamicFont" id=1]
-size = 40
-font_data = ExtResource( 4 )
 
 [node name="Level A" type="Node2D"]
 script = ExtResource( 8 )
@@ -32,36 +26,7 @@ graphic_path = NodePath("../../Level A/ScientistBlue/Scientist")
 collider_path = NodePath("../../Level A/ScientistBlue/Collision")
 collider_duck_path = NodePath("../../Level A/ScientistBlue/CollisionDuck")
 
-[node name="UI" type="Control" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Icon" type="TextureRect" parent="UI"]
-margin_right = 40.0
-margin_bottom = 40.0
-texture = ExtResource( 5 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Counter" type="Label" parent="UI/Icon"]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_right = 80.0
-margin_bottom = 40.0
-custom_fonts/font = SubResource( 1 )
-text = " x 10"
-script = ExtResource( 6 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-prefix = " x "
-target_path = NodePath("../../../../Level A/ScientistBlue")
-property = "num_clones"
+[node name="UI" parent="." instance=ExtResource( 4 )]
 
 [node name="Goal" parent="." instance=ExtResource( 7 )]
 position = Vector2( 191.607, 219.923 )

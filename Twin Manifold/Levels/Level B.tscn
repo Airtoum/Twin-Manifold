@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Levels/LevelScript.gd" type="Script" id=1]
+[ext_resource path="res://Entities/Scientist/ScientistBlue/ScientistBlue.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Tiles/FactoryTileset.tres" type="TileSet" id=3]
+[ext_resource path="res://Entities/Goal/Goal.tscn" type="PackedScene" id=4]
+[ext_resource path="res://MiscThings/UI.tscn" type="PackedScene" id=5]
+
+[node name="Level B" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="ScientistBlue" parent="." instance=ExtResource( 2 )]
+position = Vector2( 241.764, 459.654 )
+num_clones = 2
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 3 )
+cell_size = Vector2( 24, 24 )
+format = 1
+tile_data = PoolIntArray( 589849, 0, 8, 589850, 0, 196609, 589851, 0, 196609, 589852, 0, 196609, 589853, 0, 196609, 589854, 0, 196609, 589855, 0, 196609, 589856, 0, 196609, 589857, 0, 196609, 589858, 0, 196615, 655385, 0, 196608, 720921, 0, 196608, 786457, 0, 196608, 851993, 0, 196608, 917529, 0, 196608, 983065, 0, 196608, 1048592, 0, 8, 1048593, 0, 196609, 1048594, 0, 196609, 1048595, 0, 196609, 1048596, 0, 196609, 1048597, 0, 196609, 1048598, 0, 196609, 1048599, 0, 196609, 1048600, 0, 196609, 1048601, 0, 131082, 1114128, 0, 196608, 1179664, 0, 196608, 1245200, 0, 196608, 1310736, 0, 196608, 1376263, 0, 131078, 1376264, 0, 196609, 1376265, 0, 196609, 1376266, 0, 196609, 1376267, 0, 196609, 1376268, 0, 196609, 1376269, 0, 196609, 1376270, 0, 196609, 1376271, 0, 196609, 1376272, 0, 131082 )
+
+[node name="Goal" parent="." instance=ExtResource( 4 )]
+position = Vector2( 748.011, 170.057 )
+
+[node name="UI" parent="." instance=ExtResource( 5 )]
