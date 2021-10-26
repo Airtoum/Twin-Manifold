@@ -22,6 +22,7 @@ var age = 0.0
 var no_interact_until_age = 0.1
 var the_clone_i_just_made = null
 var has_lived_for_1_frame = false
+var last_velocity = Vector2.ZERO
 
 export(PackedScene) onready var Clone
 export(NodePath) onready var graphic_path
@@ -61,6 +62,7 @@ func _process(delta):
 
 # Subclass physics process happens first before superclass
 func _physics_process(delta):
+	last_velocity = velocity
 	velocity = move_and_slide_with_snap(velocity, snap, Vector2.UP)
 	state_machine.state_machine_physics_process(delta)
 	if self.age > self.no_interact_until_age:
@@ -69,6 +71,9 @@ func _physics_process(delta):
 	velocity += gravity * delta
 	#print(state_machine.current_state.name)
 	#print(is_on_floor())
+	for i in self.get_slide_count():
+		var coll = self.get_slide_collision(i)
+		GameEvents.emit_signal("collided_with", self, coll.collider, coll)
 	check_and_spawn_clone()
 	self.input_flags &= cons.INPUT_HOLD # turn off clone/jump input
 	age += delta
@@ -151,3 +156,4 @@ func set_collider(shape_name):
 		
 func die():
 	self.state_machine.set_state("Dead")
+	velocity = last_velocity

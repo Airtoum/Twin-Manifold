@@ -1,5 +1,6 @@
 extends SMState
 
+#reminder: look at B453 game development
 
 var agent : Scientist
 var dead_timer = 0.0
