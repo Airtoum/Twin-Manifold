@@ -6,9 +6,10 @@ extends Scientist
 # var b = "text"
 
 
-# Called when the node enters the scene tree for the first time.
+#superclass ready happens first
 func _ready():
 	add_to_group("ScientistBlue")
+	
 
 
 # subclass happens first before superclass

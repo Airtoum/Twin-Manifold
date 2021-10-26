@@ -23,6 +23,7 @@ var no_interact_until_age = 0.1
 var the_clone_i_just_made = null
 var has_lived_for_1_frame = false
 var last_velocity = Vector2.ZERO
+export(int) var num_clones = -1
 
 export(PackedScene) onready var Clone
 export(NodePath) onready var graphic_path
@@ -43,6 +44,7 @@ func _ready():
 	add_to_group("Scientist")
 	self.visible = has_lived_for_1_frame
 	collider = get_node(collider_path)
+	
 	
 func do_starting_state():
 	graphic = get_node(graphic_path)
@@ -91,7 +93,7 @@ func is_both_left_right_input():
 	return input_flags & cons.INPUT_SIDE == cons.INPUT_SIDE
 		
 func check_and_spawn_clone():
-	if self.input_flags & cons.INPUT_CLONE:
+	if self.input_flags & cons.INPUT_CLONE and num_clones != 0 and state_machine.current_state_name != "Dead":
 		#print("CLONING")
 		var clone = Clone.instance()
 		#print(clone)
@@ -118,6 +120,7 @@ func check_and_spawn_clone():
 				"Ducking":
 					clone.input_flags = cons.INPUT_DOWN
 		self.the_clone_i_just_made = clone
+		num_clones -= 1
 					
 
 func scientist_interact_add(other):
