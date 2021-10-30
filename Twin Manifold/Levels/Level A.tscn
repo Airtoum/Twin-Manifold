@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Tiles/FactoryTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Entities/Scientist/ScientistBlue/ScientistBlue.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Tiles/InteractiveTileMap.gd" type="Script" id=3]
 [ext_resource path="res://MiscThings/UI.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Entities/TileReplacer/TileReplacer.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Entities/Goal/Goal.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Levels/LevelScript.gd" type="Script" id=8]
 [ext_resource path="res://Entities/Button/Button.tscn" type="PackedScene" id=9]
@@ -33,3 +34,9 @@ position = Vector2( 191.607, 219.923 )
 
 [node name="Button" parent="." instance=ExtResource( 9 )]
 position = Vector2( 712.335, 481.629 )
+
+[node name="TileReplacer" parent="." instance=ExtResource( 5 )]
+position = Vector2( 635.212, 396.451 )
+tilemap_path = NodePath("../TileMap")
+my_activator = NodePath("../Button")
+new_tile = 1

@@ -9,3 +9,6 @@ signal level_end
 signal button_pressed
 signal button_depressed
 
+signal activate
+signal deactivate
+

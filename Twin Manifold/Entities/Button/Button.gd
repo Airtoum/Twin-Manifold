@@ -30,8 +30,10 @@ func am_i_pressed():
 	var am_i_pressed_now = pressed_by.size() > 0
 	if not is_pressed and am_i_pressed_now:
 		GameEvents.emit_signal("button_pressed", self)
+		GameEvents.emit_signal("activate", self)
 		$Sprite.visible = false
 	if is_pressed and not am_i_pressed_now:
-		GameEvents.emit_signal("button_depressed")
+		GameEvents.emit_signal("button_depressed", self)
+		GameEvents.emit_signal("deactivate", self)
 		$Sprite.visible = true
 	is_pressed = am_i_pressed_now
