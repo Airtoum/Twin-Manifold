@@ -31,9 +31,11 @@ func am_i_pressed():
 	if not is_pressed and am_i_pressed_now:
 		GameEvents.emit_signal("button_pressed", self)
 		GameEvents.emit_signal("activate", self)
-		$Sprite.visible = false
+		$ButtonDepressed.visible = false
+		$ButtonPressed.visible = true
 	if is_pressed and not am_i_pressed_now:
 		GameEvents.emit_signal("button_depressed", self)
 		GameEvents.emit_signal("deactivate", self)
-		$Sprite.visible = true
+		$ButtonDepressed.visible = true
+		$ButtonPressed.visible = false
 	is_pressed = am_i_pressed_now
