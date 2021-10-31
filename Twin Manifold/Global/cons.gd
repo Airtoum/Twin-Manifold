@@ -21,3 +21,9 @@ const N_INPUT_RIGHT = 29 # 11101 for turning right off (~ did something weird)
 const N_INPUT_UP = 27    # 11011 for turning up off
 const N_INPUT_DOWN = 23  # 10111 for turning down off
 const N_INPUT_CLONE = 15 # 01111 redundant but okay
+
+
+const TILE_PIPES = 0
+const TILE_TILES = 1
+const TILE_VOID = 2
+const TILE_DOOR1 = 3

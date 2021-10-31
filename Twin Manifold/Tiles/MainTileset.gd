@@ -4,14 +4,14 @@ extends TileSet
 # special thanks to https://www.reddit.com/r/godot/comments/ebo4o9/making_two_autotiles_merge/
 # and https://godotforums.org/discussion/22076/merge-2-autotiles
 
-const GROUND = 0
-const DEATH_TILE = 1
-const PLACEHOLDER = 2
-const GROUND2 = 3
+const PIPES = 0
+const TILE = 1
+const VOID = 2
+const DOOR1 = 3
 
 var binds = {
-	GROUND: [DEATH_TILE, PLACEHOLDER, GROUND2],
-	GROUND2: [GROUND]
+	PIPES: [TILE, DOOR1],
+	TILE: [DOOR1]
 }
 
 func _is_tile_bound(drawn_id, neighbor_id):

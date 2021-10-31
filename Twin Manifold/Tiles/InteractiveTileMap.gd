@@ -20,5 +20,5 @@ func _on_collided_with(who, whom, coll: KinematicCollision2D):
 		
 func evaluate_collision(world_position, who, coll):
 	var grid_pos = self.world_to_map(world_position)
-	if get_cellv(grid_pos) == 1:
+	if get_cellv(grid_pos) == cons.TILE_VOID:
 		who.die()
