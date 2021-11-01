@@ -38,7 +38,7 @@ func _process(delta):
 
 
 func _on_Goal_body_entered(body):
-	if body is Scientist:
+	if body is Scientist and not animation_start:
 		$Timer.start()
 		animation_start = true
 		animation_timer = 0

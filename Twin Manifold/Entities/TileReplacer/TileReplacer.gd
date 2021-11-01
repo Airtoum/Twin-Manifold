@@ -24,10 +24,10 @@ func _ready():
 #func _process(delta):
 #	pass
 func set_my_tiles(to_what):
-	var grid_offset = Vector2(tiles_left, tiles_up)
+	var grid_offset = Vector2(-tiles_left, -tiles_up)
 	for x in range(tiles_left + 1 + tiles_right):
 		for y in range(tiles_up + 1 + tiles_down):
-			grid_offset = Vector2(tiles_left + x, tiles_up + y)
+			grid_offset = Vector2(-tiles_left + x, -tiles_up + y)
 			var grid_pos = tilemap.world_to_map(self.position) + grid_offset
 			tilemap.set_cellv(grid_pos, to_what)
 			tilemap.update_bitmask_area(grid_pos)

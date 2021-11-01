@@ -9,6 +9,8 @@ export(String, MULTILINE) var property
 
 export(String, MULTILINE) var suffix
 
+export(bool) var negative_is_infinity = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	target = get_node_or_null(target_path)
@@ -19,7 +21,7 @@ func _process(delta):
 	if target:
 		var raw_property = target.get_indexed(property)
 		var string = ""
-		if raw_property == -1:
+		if negative_is_infinity and raw_property < -0:
 			string = "Infinity"
 		else:
 			string = str(raw_property)

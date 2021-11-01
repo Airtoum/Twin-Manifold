@@ -32,7 +32,7 @@ anchor_right = 1.0
 margin_right = 80.0
 margin_bottom = 40.0
 custom_fonts/font = SubResource( 1 )
-text = " x 10"
+text = " x "
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -40,3 +40,4 @@ __meta__ = {
 prefix = " x "
 target_path = NodePath("../../../../Level A/ScientistBlue")
 property = "num_clones"
+negative_is_infinity = true
