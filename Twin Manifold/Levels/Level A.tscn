@@ -20,6 +20,7 @@ tile_data = PoolIntArray( 196641, 0, 131078, 196642, 0, 10, 262178, 0, 131079, 4
 script = ExtResource( 3 )
 
 [node name="UI" parent="." instance=ExtResource( 4 )]
+player = NodePath("../ScientistBlue")
 
 [node name="Goal" parent="." instance=ExtResource( 7 )]
 position = Vector2( 191.607, 219.923 )

@@ -59,6 +59,7 @@ copy_these_paths = [ NodePath("../../Collision"), NodePath("../../CollisionDuck"
 agent_path = NodePath("..")
 
 [node name="StateDebug" type="Label" parent="."]
+visible = false
 margin_left = 32.9633
 margin_top = -47.6632
 margin_right = 72.9633
@@ -70,6 +71,7 @@ __meta__ = {
 property = "../ScientistStateMachine:current_state:name"
 
 [node name="VelocityDebug" type="Label" parent="."]
+visible = false
 margin_left = 33.8542
 margin_top = -22.718
 margin_right = 73.8542
@@ -81,6 +83,7 @@ __meta__ = {
 property = "..:velocity"
 
 [node name="InputDebug" type="Label" parent="."]
+visible = false
 margin_left = 34.8553
 margin_top = 3.97883
 margin_right = 74.8553

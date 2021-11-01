@@ -8,10 +8,13 @@ const PIPES = 0
 const TILE = 1
 const VOID = 2
 const DOOR1 = 3
+const BEIGE = 4
+const PIPE_DECOR = 5
 
 var binds = {
-	PIPES: [TILE, DOOR1],
-	TILE: [DOOR1]
+	PIPES: [TILE, DOOR1, BEIGE],
+	TILE: [DOOR1, BEIGE],
+	PIPE_DECOR: [TILE, DOOR1, BEIGE]
 }
 
 func _is_tile_bound(drawn_id, neighbor_id):
