@@ -1,13 +1,15 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Levels/LevelScript.gd" type="Script" id=1]
 [ext_resource path="res://Entities/Scientist/ScientistBlue/ScientistBlue.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Tiles/FactoryTileset.tres" type="TileSet" id=3]
 [ext_resource path="res://Entities/Goal/Goal.tscn" type="PackedScene" id=4]
 [ext_resource path="res://MiscThings/UI.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Levels/Level C.tscn" type="PackedScene" id=6]
 
 [node name="Level B" type="Node2D"]
 script = ExtResource( 1 )
+next_level = ExtResource( 6 )
 
 [node name="ScientistBlue" parent="." instance=ExtResource( 2 )]
 position = Vector2( 241.764, 459.654 )
