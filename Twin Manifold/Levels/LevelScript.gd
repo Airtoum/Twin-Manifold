@@ -1,17 +1,19 @@
 extends Node
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+export(PackedScene) var next_level
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	GameEvents.connect("level_end", self, "next_level")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if Input.is_action_just_pressed("Reset"):
 		get_tree().reload_current_scene()
+
+
+func next_level():
+	get_tree().change_scene_to(next_level)

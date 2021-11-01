@@ -6,7 +6,7 @@ var animation_timer = 0
 var screwdriver_insert_time = 0.1
 var screw_spin_start = 0.5
 var total_spin_time = 0.8
-var fade_start_time = 1.2
+var fade_start_time = 1.0
 var fade_duration = 0.3
 
 onready var GoalScrewDriver = $ScrewContainer/ScrewdriverContainer/GoalScrewdriver

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Levels/LevelScript.gd" type="Script" id=1]
 [ext_resource path="res://Tiles/MainTileset.tres" type="TileSet" id=2]
@@ -6,9 +6,11 @@
 [ext_resource path="res://Entities/Scientist/ScientistBlue/ScientistBlue.tscn" type="PackedScene" id=4]
 [ext_resource path="res://MiscThings/UI.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Entities/Goal/Goal.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Levels/Level 2.tscn" type="PackedScene" id=7]
 
 [node name="Level 1" type="Node2D"]
 script = ExtResource( 1 )
+next_level = ExtResource( 7 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 2 )
