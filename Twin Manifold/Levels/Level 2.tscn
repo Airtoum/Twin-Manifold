@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Levels/LevelScript.gd" type="Script" id=1]
 [ext_resource path="res://Tiles/MainTileset.tres" type="TileSet" id=2]
@@ -8,9 +8,11 @@
 [ext_resource path="res://Entities/Goal/Goal.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Entities/Button/Button.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Entities/TileReplacer/TileReplacer.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Levels/Level 3.tscn" type="PackedScene" id=9]
 
-[node name="Level 1" type="Node2D"]
+[node name="Level 2" type="Node2D"]
 script = ExtResource( 1 )
+next_level = ExtResource( 9 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 2 )
@@ -20,7 +22,7 @@ tile_data = PoolIntArray( 196616, 4, 0, 196617, 4, 0, 262150, 4, 0, 262151, 4, 0
 script = ExtResource( 3 )
 
 [node name="UI" parent="." instance=ExtResource( 5 )]
-player = NodePath("../ScientistBlue")
+player = NodePath("../../Level 2/ScientistBlue")
 
 [node name="Goal" parent="." instance=ExtResource( 6 )]
 position = Vector2( 898.517, 293.831 )
@@ -31,11 +33,15 @@ scale = Vector2( 0.9, 0.9 )
 
 [node name="TileReplacer" parent="." instance=ExtResource( 8 )]
 position = Vector2( 732.421, 300.2 )
-tilemap_path = NodePath("../TileMap")
-my_activator = NodePath("../Button")
+tilemap_path = NodePath("../../Level 2/TileMap")
+my_activator = NodePath("../../Level 2/Button")
 new_tile = -1
 tiles_up = 5
 
 [node name="ScientistBlue" parent="." instance=ExtResource( 4 )]
 position = Vector2( 204.74, 129.931 )
+state_machine = NodePath("../../Level 2/ScientistBlue/ScientistStateMachine")
 num_clones = 4
+graphic_path = NodePath("../../Level 2/ScientistBlue/Scientist")
+collider_path = NodePath("../../Level 2/ScientistBlue/Collision")
+collider_duck_path = NodePath("../../Level 2/ScientistBlue/CollisionDuck")

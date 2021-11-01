@@ -10,6 +10,11 @@ const VOID = 2
 const DOOR1 = 3
 const BEIGE = 4
 const PIPE_DECOR = 5
+const DOOR2 = 6
+const DOOR3 = 7
+const DOOR1_DARK = 8
+const DOOR2_DARK = 9
+const DOOR3_DARK = 10
 
 var binds = {
 	PIPES: [TILE, DOOR1, BEIGE],

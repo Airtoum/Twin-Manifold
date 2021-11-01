@@ -16,5 +16,6 @@ func _process(delta):
 
 
 func next_level():
+	print("Next Level")
 	if next_level:
 		get_tree().change_scene_to(next_level)
