@@ -18,8 +18,10 @@ __meta__ = {
 }
 
 [node name="Icon" type="TextureRect" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_left = 7.1272
+margin_top = 4.4545
+margin_right = 47.1272
+margin_bottom = 44.4545
 texture = ExtResource( 1 )
 expand = true
 __meta__ = {

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Levels/LevelScript.gd" type="Script" id=1]
 [ext_resource path="res://Tiles/MainTileset.tres" type="TileSet" id=2]
@@ -7,6 +7,13 @@
 [ext_resource path="res://MiscThings/UI.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Entities/Goal/Goal.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Levels/Level 2.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Assets/ShiftControl.png" type="Texture" id=8]
+[ext_resource path="res://Assets/ControlSquare.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Nexa Bold.otf" type="DynamicFontData" id=10]
+
+[sub_resource type="DynamicFont" id=1]
+size = 57
+font_data = ExtResource( 10 )
 
 [node name="Level 1" type="Node2D"]
 script = ExtResource( 1 )
@@ -27,3 +34,40 @@ position = Vector2( 745.862, 419.547 )
 
 [node name="ScientistBlue" parent="." instance=ExtResource( 4 )]
 position = Vector2( 400.048, 419.526 )
+
+[node name="Shift" type="TextureRect" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 689.475
+margin_top = 85.1624
+margin_right = 843.475
+margin_bottom = 145.162
+texture = ExtResource( 8 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="F Control" type="TextureRect" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 894.867
+margin_top = 85.4296
+margin_right = 954.867
+margin_bottom = 145.43
+texture = ExtResource( 9 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="F Control"]
+margin_left = -37.487
+margin_top = 6.75684
+margin_right = 46.513
+margin_bottom = 64.7568
+custom_fonts/font = SubResource( 1 )
+text = "/  F"
+__meta__ = {
+"_edit_use_anchors_": false
+}

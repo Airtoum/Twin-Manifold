@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Levels/LevelScript.gd" type="Script" id=1]
 [ext_resource path="res://Tiles/MainTileset.tres" type="TileSet" id=2]
@@ -8,9 +8,17 @@
 [ext_resource path="res://Entities/Goal/Goal.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Entities/Button/Button.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Entities/TileReplacer/TileReplacer.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Levels/Level 5.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Assets/ControlSquare.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Nexa Bold.otf" type="DynamicFontData" id=11]
+
+[sub_resource type="DynamicFont" id=1]
+size = 57
+font_data = ExtResource( 11 )
 
 [node name="Level 3" type="Node2D"]
 script = ExtResource( 1 )
+next_level = ExtResource( 9 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 2 )
@@ -54,3 +62,25 @@ num_clones = 5
 graphic_path = NodePath("../../Level 3/ScientistBlue/Scientist")
 collider_path = NodePath("../../Level 3/ScientistBlue/Collision")
 collider_duck_path = NodePath("../../Level 3/ScientistBlue/CollisionDuck")
+
+[node name="Control R" type="TextureRect" parent="."]
+margin_left = 674.28
+margin_top = 54.7035
+margin_right = 734.28
+margin_bottom = 114.704
+texture = ExtResource( 10 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Control R"]
+margin_left = 11.0
+margin_top = 7.0
+margin_right = 51.0
+margin_bottom = 65.0
+custom_fonts/font = SubResource( 1 )
+text = "R"
+__meta__ = {
+"_edit_use_anchors_": false
+}

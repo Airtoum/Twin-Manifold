@@ -20,8 +20,7 @@ func _on_Button_body_entered(body):
 
 
 func _on_Button_body_exited(body):
-	if body is Scientist:
-		toggle_flipped()
+	pass
 	
 func toggle_flipped():
 	is_lever_pulled = not is_lever_pulled
