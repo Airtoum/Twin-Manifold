@@ -1,0 +1,56 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Levels/LevelScript.gd" type="Script" id=1]
+[ext_resource path="res://Tiles/MainTileset.tres" type="TileSet" id=2]
+[ext_resource path="res://Tiles/InteractiveTileMap.gd" type="Script" id=3]
+[ext_resource path="res://Entities/Scientist/ScientistBlue/ScientistBlue.tscn" type="PackedScene" id=4]
+[ext_resource path="res://MiscThings/UI.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Entities/Goal/Goal.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Entities/Button/Button.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Entities/TileReplacer/TileReplacer.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Entities/Lever/Lever.tscn" type="PackedScene" id=9]
+
+[node name="Level 3" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 24, 24 )
+format = 1
+tile_data = PoolIntArray( 786436, 0, 1, 851971, 0, 196611, 851972, 0, 327685, 917507, 0, 196610, 983043, 0, 196610, 983048, 1, 0, 983049, 1, 0, 983050, 0, 196612, 983051, 0, 327680, 983052, 0, 196613, 1048579, 0, 131075, 1048580, 0, 196613, 1048583, 0, 196611, 1048584, 0, 131072, 1048585, 0, 327684, 1048586, 0, 262149, 1048588, 0, 131073, 1114116, 0, 65539, 1114117, 1, 0, 1114118, 1, 0, 1114119, 0, 327684, 1114120, 0, 327685, 1114122, 0, 327681, 1179652, 0, 327683, 1179653, 0, 65541, 1245189, 0, 196610, 1310724, 0, 3, 1310725, 0, 131077, 1376260, 0, 327681, 1769461, 2, 131080, 1769462, 2, 131072, 1769463, 2, 131072, 1769464, 2, 131072, 1769465, 2, 131072, 1769466, 2, 131072, 1769467, 2, 131072, 1769468, 2, 131072, 1769469, 2, 131072, 1769470, 2, 131072, 1769471, 2, 131072, 1703936, 2, 131072, 1703937, 2, 131072, 1703938, 2, 131072, 1703939, 2, 131072, 1703940, 2, 131072, 1703941, 2, 131072, 1703942, 2, 131072, 1703943, 2, 131072, 1703944, 2, 131072, 1703945, 2, 131072, 1703946, 2, 131072, 1703947, 2, 131072, 1703948, 2, 131072, 1703949, 2, 131072, 1703950, 2, 131072, 1703951, 2, 131072, 1703952, 2, 131072, 1703953, 2, 131072, 1703954, 2, 131072, 1703955, 2, 131072, 1703956, 2, 131072, 1703957, 2, 131072, 1703958, 2, 131072, 1703959, 2, 131072, 1703960, 2, 131072, 1703961, 2, 131072, 1703962, 2, 131072, 1703963, 2, 131072, 1703964, 2, 131072, 1703965, 2, 131072, 1703966, 2, 131072, 1703967, 2, 131072, 1703968, 2, 131072, 1703969, 2, 131072, 1703970, 2, 131072, 1703971, 2, 131072, 1703972, 2, 131072, 1703973, 2, 131072, 1703974, 2, 131072, 1703975, 2, 131072, 1703976, 2, 131072, 1703977, 2, 131072, 1703978, 2, 131072, 1703979, 2, 131072, 1703980, 2, 131072, 1703981, 2, 131072, 1703982, 2, 131072, 1703983, 2, 131072, 1703984, 2, 131072, 1703985, 2, 131072, 1703986, 2, 131072, 1703987, 2, 131072, 1703988, 2, 131072, 1703989, 2, 131072, 1703990, 2, 131072, 1703991, 2, 131072, 1703992, 2, 65545 )
+script = ExtResource( 3 )
+
+[node name="UI" parent="." instance=ExtResource( 5 )]
+player = NodePath("../../Level 3/ScientistBlue")
+
+[node name="Goal" parent="." instance=ExtResource( 6 )]
+position = Vector2( 722.198, 484.206 )
+
+[node name="Button" parent="." instance=ExtResource( 7 )]
+position = Vector2( 144.269, 411.602 )
+scale = Vector2( 0.9, 0.9 )
+
+[node name="TileReplacer" parent="." instance=ExtResource( 8 )]
+position = Vector2( 836.026, 353.585 )
+tilemap_path = NodePath("../../Level 3/TileMap")
+my_activator = NodePath("../../Level 3/Button")
+new_tile = 3
+tiles_right = 2
+
+[node name="TileReplacer2" parent="." instance=ExtResource( 8 )]
+position = Vector2( 705.336, 230.728 )
+tilemap_path = NodePath("../../Level 3/TileMap")
+new_tile = 6
+tiles_right = 2
+
+[node name="ScientistBlue" parent="." instance=ExtResource( 4 )]
+position = Vector2( 595.613, 105.11 )
+state_machine = NodePath("../../Level 3/ScientistBlue/ScientistStateMachine")
+num_clones = 5
+graphic_path = NodePath("../../Level 3/ScientistBlue/Scientist")
+collider_path = NodePath("../../Level 3/ScientistBlue/Collision")
+collider_duck_path = NodePath("../../Level 3/ScientistBlue/CollisionDuck")
+
+[node name="Lever" parent="." instance=ExtResource( 9 )]
+position = Vector2( 216.842, 364.468 )
+scale = Vector2( 0.9, 0.9 )

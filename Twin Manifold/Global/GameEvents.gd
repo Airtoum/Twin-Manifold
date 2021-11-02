@@ -12,3 +12,5 @@ signal button_depressed
 signal activate
 signal deactivate
 
+signal lever_flipped_on
+signal lever_flipped_off
